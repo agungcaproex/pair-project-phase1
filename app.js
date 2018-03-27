@@ -8,7 +8,7 @@ const prodMinimarketRouter = require('./routes/product-minimarket'); // price
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.set('view engine', 'ejs');

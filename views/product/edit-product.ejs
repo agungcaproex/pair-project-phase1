@@ -1,0 +1,24 @@
+<html>
+<body>
+    <main>
+        <div class="container">
+            <h2>Edit Data Product</h2>
+            <form name="form" method="POST" action="/products/edit-product/<%= product.id %>">
+                <table>
+                    <tr>
+                        <td>Product Name</td>
+                        <td><input type="text" name="product_name" value="<%= product.name %>"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" value="SAVE" ></td>
+                    </tr>
+                    
+                </table>
+                </form>
+        </div>
+    </main>
+    <tr>    
+        <td><a href="/products/">Back</a></td>
+    </tr>
+</body>
+</html>
