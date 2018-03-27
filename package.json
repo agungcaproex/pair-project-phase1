@@ -1,0 +1,28 @@
+{
+  "name": "pair-project-phase1",
+  "version": "1.0.0",
+  "description": "Pair Project Phase 1 With Yosa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agungcaproex/pair-project-phase1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agungcaproex/pair-project-phase1/issues"
+  },
+  "homepage": "https://github.com/agungcaproex/pair-project-phase1#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.37.4"
+  },
+  "devDependencies": {},
+  "keywords": []
+}
