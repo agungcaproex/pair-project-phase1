@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Minimarket.associate = function(models) {
     // associations can be defined here
+    Minimarket.belongsToMany(models.Product, {through: models.ProductMinimarket})
+    Minimarket.hasMany(models.ProductMinimarket)
   };
   return Minimarket;
 };

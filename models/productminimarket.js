@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   ProductMinimarket.associate = function(models) {
     // associations can be defined here
+    ProductMinimarket.belongsTo(models.Product)
+    ProductMinimarket.belongsTo(models.Minimarket)
   };
   return ProductMinimarket;
 };
