@@ -1,46 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <table>
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/header.ejs') %>
+<div class="container">
+    <table class="table">
         <thead>
             <tr>
                 <th>No</th>
                 <th>Product Name</th>
                 <th>Minimarket</th>
                 <th>Price</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
+            <% let no = 1%>
             <% for(let i=0; i<dataProduct.length; i++) { %>
-            <tr>
-                <td>1</td>
-                <td><%= dataProduct[i].name %></td>
-                <td>
-                    <ul>
-                        <% let minimarketName = dataProduct[i].Minimarkets %>
-                        <% for(let j=0; j<minimarketName.length; j++) {%>
-                            <li><%= minimarketName[j].name %></li>
+                <tr>
+                    <td><%= no %></td>
+                    <td><%= dataProduct[i].name %></td>
+                    <td>
+                        <ul>
+                            <% let minimarketName = dataProduct[i].Minimarkets %>
+                            <% for(let j=0; j<minimarketName.length; j++) {%>
+                                <li><%= minimarketName[j].name %></li>
+                            <% } %>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <% let minimarketPrice = dataProduct[i].Minimarkets %>
+                            <% for(let k=0; k< minimarketPrice.length; k++) { %>
+                                <li><%= helper.rupiahFormat(minimarketPrice[k].ProductMinimarket.price) %></li>
+                            <% } %>
+                        </ul>
+                    </td>
+                    <td>
+                        <% if(dataProduct[i].Minimarkets.length == dataProduct.length) { %>
+                            <a class="btn btn-default disabled" href="/productminimarkets/<%= dataProduct[i].id %>/addminimarket">Tambah Minimarket</a>
+                        <% } else { %>
+                            <a class="btn btn-primary" href="/productminimarkets/<%= dataProduct[i].id %>/addminimarket">Tambah Minimarket</a>
                         <% } %>
-                        <li><a href="/productminimarkets/<%= dataProduct[i].id %>/addminimarket">Tambah Minimarket</a></li>
-                    </ul>
-                </td>
-                <td>
-                    <ul>
-                        <% let minimarketPrice = dataProduct[i].Minimarkets %>
-                        <% for(let k=0; k< minimarketPrice.length; k++) { %>
-                            <li><%= minimarketPrice[k].ProductMinimarket.price %></li>
-                        <% } %>
-                    </ul>
-                </td>
-            </tr>
+                    </td>
+                </tr>
+                <% no++ %>
             <% } %>
         </tbody>
     </table>
-</body>
-</html>
+</div>
+<%- include('../partial/footer.ejs') %>
