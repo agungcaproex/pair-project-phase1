@@ -9,8 +9,24 @@ module.exports = (sequelize, DataTypes) => {
     },
     ProductId: DataTypes.INTEGER,
     MinimarketId: DataTypes.INTEGER,
-    price: DataTypes.INTEGER
-  }, {});
+    price: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isInt: {
+          args: true,
+          msg: 'Hanya bisa dimasukkan angka !!'
+        }
+      }
+    }
+  }, {
+    hooks: {
+      beforeCreate: (productMinimarket, options) => {
+        if(productMinimarket.price == null || productMinimarket.price == ''){
+          productMinimarket.price = 0;
+        }
+      }
+    }
+  });
   ProductMinimarket.associate = function(models) {
     // associations can be defined here
     ProductMinimarket.belongsTo(models.Product)

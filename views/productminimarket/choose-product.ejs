@@ -1,7 +1,7 @@
 <%- include('../partial/head.ejs') %>
 <%- include('../partial/header.ejs') %>
 <div class="container">
-    <table class="table">
+    <table class="table table-stripped">
         <thead>
             <tr>
                 <th>No</th>
@@ -29,15 +29,20 @@
                         <ul>
                             <% let minimarketPrice = dataProduct[i].Minimarkets %>
                             <% for(let k=0; k< minimarketPrice.length; k++) { %>
-                                <li><%= helper.rupiahFormat(minimarketPrice[k].ProductMinimarket.price) %></li>
+                                <li>
+                                    <%= helper.rupiahFormat(minimarketPrice[k].ProductMinimarket.price) %>
+                                    <a href="/productminimarkets/deletespecific/<%= dataProduct[i].id %>/<%= minimarketPrice[k].id %>">
+                                        <span style="color:red; display:inline-table; float: right;" class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </li>
                             <% } %>
                         </ul>
                     </td>
                     <td>
                         <% if(dataProduct[i].Minimarkets.length == dataProduct.length) { %>
-                            <a class="btn btn-default disabled" href="/productminimarkets/<%= dataProduct[i].id %>/addminimarket">Tambah Minimarket</a>
+                            <a class="btn btn-default disabled" href="/productminimarkets/<%= dataProduct[i].id %>/addprice">Add Price Minimarket</a>
                         <% } else { %>
-                            <a class="btn btn-primary" href="/productminimarkets/<%= dataProduct[i].id %>/addminimarket">Tambah Minimarket</a>
+                            <a class="btn btn-primary" href="/productminimarkets/<%= dataProduct[i].id %>/addprice">Add Price Minimarket</a>
                         <% } %>
                     </td>
                 </tr>
