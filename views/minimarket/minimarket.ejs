@@ -1,40 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <a href="/minimarkets/add">Tambah</a>
-    <h1>Table Minimarket</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Option</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% no=1 %>
-            <% for(let i=0; i<dataMinimarket.length; i++) { %>
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/header.ejs') %>
+<div class="container">
+    <h1>Minimarkets List</h1>
+    
+    <a class="btn btn-primary" href="/minimarkets/add">Add Minimarket</a>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td><%= no %></td>
-                    <td><%= dataMinimarket[i].name %></td>
-                    <td><%= dataMinimarket[i].address %></td>
-                    <td>
-                        <a href="/minimarkets/edit/<%= dataMinimarket[i].id %>">EDIT</a>
-                        <a href="/minimarkets/delete/<%= dataMinimarket[i].id %>">DELETE</a>
-                    </td>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Option</th>
                 </tr>
-            <% no++ %>
-            <% } %>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <% no=1 %>
+                <% for(let i=0; i<dataMinimarket.length; i++) { %>
+                    <tr>
+                        <td><%= no %></td>
+                        <td><%= dataMinimarket[i].name %></td>
+                        <td><%= dataMinimarket[i].address %></td>
+                        <td>
+                            <a class="btn btn-warning" href="/minimarkets/edit/<%= dataMinimarket[i].id %>">Edit</a>
+                            <a class="btn btn-danger" href="/minimarkets/delete/<%= dataMinimarket[i].id %>" onclick="return confirm('delete this product ?');">Delete</a>
+                        </td>
+                    </tr>
+                <% no++ %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-
-</body>
-</html>
+<%- include('../partial/footer.ejs') %>
