@@ -8,9 +8,10 @@
 </head>
 <body>
     <h1>Add Price</h1>
-    <form action="/productminimarkets/add" method="post">
+    <%= notif %>
+    <form action="/productminimarkets/<%= dataProduct.id %>/addprice" method="post">
         <p><%= dataProduct.name %> </p>
-        <input type="hidden" name="product" value="<%= dataProduct.id %>">
+        <!-- <input type="hidden" name="product" value="<%= dataProduct.id %>"> -->
         <select name="minimarket">
             <% for(let i=0; i<dataMinimarket.length; i++) { %>
                 <option value="<%= dataMinimarket[i].id %>"><%= dataMinimarket[i].name %></option>

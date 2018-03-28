@@ -15,20 +15,7 @@ router.get('/', function(req, res) {
     })
 })
 
-// router.get('/chooseProduct', function(req, res) {
-//     Product.findAll({
-//         include: [Minimarket]
-//     })
-//     .then(dataProduct => {
-//         let obj = {
-//             dataProduct: dataProduct
-//         };
-//         res.render('./productminimarket/choose-product.ejs', obj)
-//         // res.send(dataProduct)
-//     })
-// })
-
-router.get('/:id/addminimarket', function(req, res) {
+router.get('/:id/addprice', function(req, res) {
     Product.findOne({
         where: { id: req.params.id }
     })
@@ -51,6 +38,7 @@ router.get('/:id/addminimarket', function(req, res) {
             })
             .then(dataMinimarket => {
                 let obj = {
+                    notif: req.query.err,
                     dataMinimarket: dataMinimarket,
                     dataProduct: dataProduct
                 };
@@ -60,28 +48,17 @@ router.get('/:id/addminimarket', function(req, res) {
     })
 })
 
-// router.get('/add', function(req, res) {
-//     Product.findAll()
-//     .then(dataProduct => {
-//         Minimarket.findAll()
-//         .then(dataMinimarket => {
-//             let obj = {
-//                 dataMinimarket: dataMinimarket,
-//                 dataProduct: dataProduct
-//             };
-//             res.render('./productminimarket/add-productminimarket.ejs', obj)
-//         })
-//     })
-// })
-
-router.post('/add', function(req, res) {
+router.post('/:id/addprice', function(req, res) {
     ProductMinimarket.create({
-        ProductId: req.body.product,
+        ProductId: req.params.id,
         MinimarketId: req.body.minimarket,
-        price: req.body.price
+        price: Number(req.body.price)
     })
     .then(() => {
         res.redirect('/productminimarkets')
+    })
+    .catch(err => {
+        res.redirect(`/productminimarkets/${req.params.id}/addprice?err=${err.message}`)
     })
 })
 
@@ -95,6 +72,18 @@ router.get('/edit/:id', function(req, res) {
             dataProductMinimarket: dataProductMinimarket
         };
         res.render('./productminimarket/edit-productminimarket.ejs', obj)
+    })
+})
+
+router.get('/deletespecific/:idproduct/:idminimarket', function(req, res) {
+    ProductMinimarket.destroy({
+        where: {
+            ProductId: req.params.idproduct,
+            MinimarketId: req.params.idminimarket
+        }
+    })
+    .then(() => {
+        res.redirect('/productminimarkets')
     })
 })
 
