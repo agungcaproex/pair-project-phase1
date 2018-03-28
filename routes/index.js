@@ -1,21 +1,59 @@
 const router = require('express').Router();
 const {User} = require('../models')
+const checkAdmin = require('../middleware/authAdmin')
 
 router.get('/', function(req, res) {
-    res.render('register-login/home')
+    res.render('register-login/index')
 })
 
-router.get('/home', function(req, res) {
-    res.send('Ini halaman Home untuk menampilkan data produk yang sesuai MVP')
+router.get('/home', checkAdmin, function(req, res) {
+    res.render('home')
 })
+
 
 router.get('/login', function(req, res) {
-    res.render('register-login/home')
+    res.render('register-login/index')
+})
+
+router.post('/login', function(req, res) {
+    // res.render('register-login/home')
+    // res.send(req.session)
+    User.findOne({
+        where: {
+            username: req.body.username,
+            password: req.body.password
+        }
+    })
+    .then(dataUser => {
+        if(dataUser){
+            req.session.userid = dataUser.id
+            req.session.username = dataUser.username
+            req.session.role = dataUser.role
+
+            if(req.session.role == 'admin'){
+                res.redirect('/home')
+            }
+            else if(req.session.role == 'netizen'){
+                // res.redirect('/productminimarkets')
+                res.send(req.session)
+            }
+        }
+        else{
+            res.redirect('/login')
+        }
+    })
+    .catch(err => {
+        console.log(err)
+    })
 })
 
 
 router.get('/register', function(req, res) {
-    res.render('register-login/register')
+    let error = ""
+    if(req.query.error != ""){
+        error = req.query.error
+    }
+    res.render('register-login/register', {error: error})
 })
 
 router.post('/register', function(req, res) {
@@ -35,7 +73,8 @@ router.post('/register', function(req, res) {
         res.render('register-login/register_success')
     })
     .catch(err => {
-        console.log(err)
+        // console.log(err)
+        res.redirect(`/register?error=${err.message}`)
     })
 })
 
