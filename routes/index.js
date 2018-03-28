@@ -78,6 +78,12 @@ router.post('/register', function(req, res) {
     })
 })
 
+router.get('/logout', (req, res) => {
+    req.session.destroy(err=>{
+        res.redirect('/')
+    })
+})
+
 
 
 module.exports = router;
