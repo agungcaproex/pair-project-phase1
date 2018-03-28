@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "admin",
-    "password": "@dmin1234",
-    "database": "minimarket",
-    "host": "127.0.0.1",
+    "username": "oumwblzhurdwkf",
+    "password": "b9a7144dba4701312b911fa35fcb0e9b71349e0a4aea1485ca28470ccd0f1a9",
+    "database": "d60b035qh7cjos",
+    "host": "ec2-54-243-28-109.compute-1.amazonaws.com",
     "dialect": "postgres"
   },
   "test": {
