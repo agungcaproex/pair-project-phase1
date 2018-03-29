@@ -30,7 +30,7 @@ app.use(session({
 }))
 
 app.use('/', indexRouter);
-app.use('/', checkNetizen, clientRouter);
+app.use('/', clientRouter);
 app.use('/products', checkAdmin, productRouter);
 app.use('/minimarkets', checkAdmin, minimarketRouter);
 app.use('/productminimarkets', checkAdmin, prodMinimarketRouter); // price

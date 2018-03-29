@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const {ProductMinimarket, Product, Minimarket, Sequelize} = require('../models/index');
+const checkNetizen  = require('../middleware/authNetizen')
 
-router.get('/beranda', function(req, res) {
+router.get('/beranda', checkNetizen, function(req, res) {
     res.render('./client-side/beranda.ejs')
 })
 
-router.get('/searchbyproduct', function(req, res) {
+router.get('/searchbyproduct', checkNetizen, function(req, res) {
     Product.findAll()
     .then(data => {
         let obj = {data:data};
@@ -24,7 +25,7 @@ router.post('/findproduct', function(req, res) {
     })
 })
 
-router.get('/findproduct/:id', function(req, res) {
+router.get('/findproduct/:id', checkNetizen, function(req, res) {
     Product.findAll()
     .then(data => {
         ProductMinimarket.findAll({
@@ -42,7 +43,7 @@ router.get('/findproduct/:id', function(req, res) {
     })
 })
 
-router.get('/searchbyminimarket', function(req, res) {
+router.get('/searchbyminimarket', checkNetizen, function(req, res) {
     Minimarket.findAll()
     .then(data => {
         let obj = {data:data};
@@ -62,7 +63,7 @@ router.post('/findminimarket', function(req, res) {
     })
 })
 
-router.get('/findminimarket/:id', function(req, res) {
+router.get('/findminimarket/:id', checkNetizen, function(req, res) {
     Minimarket.findAll()
     .then(data => {
         ProductMinimarket.findAll({
