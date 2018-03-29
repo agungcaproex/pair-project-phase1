@@ -41,7 +41,7 @@ router.post('/login', function(req, res) {
             }
             else if(req.session.role == 'netizen'){
                 // res.redirect('/productminimarkets')
-                res.send(req.session)
+                res.redirect('/beranda')
             }
         }
         else{

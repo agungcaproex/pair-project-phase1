@@ -4,7 +4,7 @@ const indexRouter           = require('./routes');
 const productRouter         = require('./routes/product');
 const minimarketRouter      = require('./routes/minimarket');
 const prodMinimarketRouter  = require('./routes/product-minimarket'); // price
-const clientRouter           = require('./routes/client-side');
+const clientRouter          = require('./routes/client-side');
 const session               = require('express-session');
 const checkAdmin            = require('./middleware/authAdmin');
 
