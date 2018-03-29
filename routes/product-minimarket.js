@@ -7,11 +7,17 @@ router.get('/', function(req, res) {
         include: [Minimarket]
     })
     .then(dataProduct => {
-        let obj = {
-            dataProduct: dataProduct
-        };
-        res.render('./productminimarket/choose-product.ejs', obj)
-        // res.send(dataProduct)
+        ProductMinimarket.userLogin(req.session.username)
+        .then(dataLogin => {
+            let obj = {
+                dataProduct: dataProduct,
+                login: dataLogin
+            };
+            res.render('./productminimarket/choose-product.ejs', obj)
+        })
+        .catch(err => {
+            console.log(err)
+        })
     })
 })
 

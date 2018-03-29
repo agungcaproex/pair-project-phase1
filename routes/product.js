@@ -8,7 +8,14 @@ router.get('/', (req, res) => {
         order: [['id','ASC']]
     })
     .then(listProduct => {
-        res.render('product/list-product', {product: listProduct})
+        ProductMinimarket.userLogin(req.session.username)
+        .then(dataLogin => {
+            let obj = {
+                product: listProduct,
+                login: dataLogin
+            };
+            res.render('product/list-product', obj)
+        })
     })
     .catch(err => {
         console.log(err)
