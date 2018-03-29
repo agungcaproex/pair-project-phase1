@@ -9,11 +9,15 @@ router.get('/', function(req, res) {
     .then(dataProduct => {
         ProductMinimarket.userLogin(req.session.username)
         .then(dataLogin => {
-            let obj = {
-                dataProduct: dataProduct,
-                login: dataLogin
-            };
-            res.render('./productminimarket/choose-product.ejs', obj)
+            Minimarket.findAll()
+            .then(minimarkets => {
+                let obj = {
+                    dataProduct: dataProduct,
+                    login: dataLogin,
+                    minimarkets: minimarkets
+                };
+                res.render('./productminimarket/choose-product.ejs', obj)
+            })
         })
         .catch(err => {
             console.log(err)
