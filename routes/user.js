@@ -52,7 +52,7 @@ router.post('/edit-user/:id', (req, res) => {
 })
 
 
-router.get('/delete/:id', (req, res) => {
+router.get('/del-user/:id', (req, res) => {
     User.destroy({
         where: {
             id: req.params.id
