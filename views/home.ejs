@@ -1,9 +1,6 @@
-
-<% include ./partial/head %>
-
-    <header>
-        <% include ./partial/header %>
-    </header>
+<%- include('./partial/head.ejs') %>
+<%- include('./partial/header.ejs') %>
+    <nav class="container">
 
     <main>
         <div class="jumbotron">
@@ -12,5 +9,7 @@
         </div>
     </main>
 
-    <% include ./partial/footer %>
-</footer>
+    </nav>
+    <%- include ./partial/footer %>
+
+

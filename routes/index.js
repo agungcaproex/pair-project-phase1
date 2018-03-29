@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {User, ProductMinimarket} = require('../models/index')
 const checkAdmin = require('../middleware/authAdmin')
+const users = require('./user')
 
 router.get('/', function(req, res) {
     res.render('register-login/index')
@@ -83,12 +84,13 @@ router.post('/register', function(req, res) {
     })
 })
 
+
 router.get('/logout', (req, res) => {
     req.session.destroy(err=>{
         res.redirect('/')
     })
 })
 
-
+router.use('/users',checkAdmin, users)
 
 module.exports = router;
