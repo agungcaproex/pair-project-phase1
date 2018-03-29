@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Product} = require('../models')
+const {Product, ProductMinimarket} = require('../models')
 
 //List Product
 router.get('/', (req, res) => {
