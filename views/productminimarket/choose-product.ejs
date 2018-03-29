@@ -1,0 +1,56 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/header.ejs') %>
+<div class="container">
+    <h1>Pricing</h1>
+    <br><br>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Product Name</th>
+                <th>Minimarket</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let no = 1%>
+            <% for(let i=0; i<dataProduct.length; i++) { %>
+                <tr>
+                    <td><%= no %></td>
+                    <td><%= dataProduct[i].name %></td>
+                    <td>
+                        <ul>
+                            <% let minimarketName = dataProduct[i].Minimarkets %>
+                            <% for(let j=0; j<minimarketName.length; j++) {%>
+                                <li><%= minimarketName[j].name %></li>
+                            <% } %>
+                        </ul> 
+                    </td>
+                    <td>
+                        <ul>
+                            <% let minimarketPrice = dataProduct[i].Minimarkets %>
+                            <% for(let k=0; k< minimarketPrice.length; k++) { %>
+                                <li>
+                                    <%= helper.rupiahFormat(minimarketPrice[k].ProductMinimarket.price) %>
+                                    <a href="/productminimarkets/deletespecific/<%= dataProduct[i].id %>/<%= minimarketPrice[k].id %>">
+                                        <span style="color:red; display:inline-table; float: right;" class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </td>
+                    <td>
+                        <% if(dataProduct[i].Minimarkets.length == minimarkets.length) { %>
+                            <a class="btn btn-default disabled" href="/productminimarkets/<%= dataProduct[i].id %>/addprice">Add Price Minimarket</a>
+                        <% } else { %>
+                            <a class="btn btn-primary" href="/productminimarkets/<%= dataProduct[i].id %>/addprice">Add Price Minimarket</a>
+                        <% } %>
+                    </td>
+                </tr>
+                <% no++ %>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<%- include('../partial/footer.ejs') %>

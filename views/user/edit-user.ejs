@@ -1,0 +1,47 @@
+<html>
+<body>
+    <main>
+        <div class="container">
+            <h2>Edit Data User</h2>
+            <form name="form" method="POST" action="/users/edit-user/<%= users.id %>">
+                <table>
+                    <tr>
+                        <td>First Name</td>
+                        <td><input type="text" name="first_name" value="<%= users.first_name %>"></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td><input type="text" name="last_name" value="<%= users.last_name %>"></td>
+                    </tr>
+                    <tr>
+                        <td>User Name</td>
+                        <td><input type="text" name="username" value="<%= users.username %>" disabled></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="text" name="email" value="<%= users.email %>"></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td><input type="text" name="gender" value="<%= users.gender %>" disabled></td>
+                    </tr>
+                    <tr>
+                        <td>Role</td>
+                        <td><select type="text" name="role">
+                            <option value="admin">Admin</option>
+                            <option value="netizen">Netizen</option>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" value="SAVE" ></td>
+                    </tr>
+                    
+                </table>
+                </form>
+        </div>
+    </main>
+    <tr>    
+        <td><a href="/users/">Back</a></td>
+    </tr>
+</body>
+</html>

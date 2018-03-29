@@ -1,0 +1,16 @@
+<%- include('../partial/head-client.ejs') %>
+<%- include('../partial/menu-client.ejs') %>
+
+<div class="container">
+    <div class="w900">
+        <h1>Pilih Produk</h1>
+        <form method="post" action="/findproduct">
+            <select class="select" name="productID">
+                <% for(let i=0; i<data.length; i++) { %>
+                    <option value="<%= data[i].id %>"><%= data[i].name %></option>
+                <% } %>
+            </select>
+            <input class="cari" type="submit" value="Cari">
+        </form>
+    </div>
+</div>

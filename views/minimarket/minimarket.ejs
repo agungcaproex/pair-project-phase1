@@ -1,0 +1,36 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/header.ejs') %>
+<div class="container">
+    <h1>Minimarkets List</h1>
+    
+    <a class="btn btn-primary" href="/minimarkets/add">Add Minimarket</a>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% no=1 %>
+                <% for(let i=0; i<dataMinimarket.length; i++) { %>
+                    <tr>
+                        <td><%= no %></td>
+                        <td><%= dataMinimarket[i].name %></td>
+                        <td><%= dataMinimarket[i].address %></td>
+                        <td>
+                            <a class="btn btn-warning" href="/minimarkets/edit/<%= dataMinimarket[i].id %>">Edit</a>
+                            <a class="btn btn-danger" href="/minimarkets/delete/<%= dataMinimarket[i].id %>" onclick="return confirm('delete this product ?');">Delete</a>
+                        </td>
+                    </tr>
+                <% no++ %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('../partial/footer.ejs') %>

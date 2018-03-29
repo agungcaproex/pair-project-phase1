@@ -1,0 +1,30 @@
+<%- include('../partial/head.ejs') %>
+<%- include('../partial/header.ejs') %>
+<div class="container">
+
+        <h1>Products List</h1>
+
+        <a class="btn btn-primary" href="/products/add-product">Add Product</a>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Product Name</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <% let no=1 %>
+            <% product.forEach(dataProduct => { %>
+                <tr>
+                    <td><%= no++ %></td>
+                    <td><%= dataProduct.name %></td>
+                    <td><a class="btn btn-warning" href="/products/edit-product/<%= dataProduct.id %>">Edit</a></td>
+                    <td><a class="btn btn-danger" href="/products/del-product/<%= dataProduct.id %>" onclick="return confirm('delete this product ?');">Delete</a></td>
+                </tr>
+            <% }) %>
+    </table>
+    </div>
+</div>
+
+<%- include('../partial/footer.ejs') %>
