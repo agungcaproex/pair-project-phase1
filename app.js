@@ -7,6 +7,7 @@ const prodMinimarketRouter  = require('./routes/product-minimarket'); // price
 const clientRouter          = require('./routes/client-side');
 const session               = require('express-session');
 const checkAdmin            = require('./middleware/authAdmin');
+const checkNetizen          = require('./middleware/authNetizen')
 
 const app = express();
 const port = 3000;
@@ -29,7 +30,7 @@ app.use(session({
 }))
 
 app.use('/', indexRouter);
-app.use('/', clientRouter);
+app.use('/', checkNetizen, clientRouter);
 app.use('/products', checkAdmin, productRouter);
 app.use('/minimarkets', checkAdmin, minimarketRouter);
 app.use('/productminimarkets', checkAdmin, prodMinimarketRouter); // price
