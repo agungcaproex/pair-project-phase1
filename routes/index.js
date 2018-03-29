@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User} = require('../models')
+const {User, ProductMinimarket} = require('../models/index')
 const checkAdmin = require('../middleware/authAdmin')
 
 router.get('/', function(req, res) {
@@ -7,9 +7,14 @@ router.get('/', function(req, res) {
 })
 
 router.get('/home', checkAdmin, function(req, res) {
-    res.render('home')
+    ProductMinimarket.userLogin(req.session.username)
+    .then(dataLogin => {
+        let obj = {
+            login: dataLogin
+        };
+        res.render('home', obj)
+    })
 })
-
 
 router.get('/login', function(req, res) {
     res.render('register-login/index')
