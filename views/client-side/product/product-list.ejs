@@ -1,0 +1,42 @@
+<%- include('../../partial/head-client.ejs') %>
+<%- include('../../partial/menu-client.ejs') %>
+
+<div class="container">
+    <div class="w900">
+        <h1>Pilih Produk</h1>
+        <form method="post" action="/findproduct">
+            <select class="select" name="productID">
+                <% for(let i=0; i<data.length; i++) { %>
+                    <option value="<%= data[i].id %>"><%= data[i].name %></option>
+                <% } %>
+            </select>
+            <input class="cari" type="submit" value="Cari">
+        </form>
+
+        <br><br><br><br><br>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Product</th>
+                    <th>Tempat</th>
+                    <th>Harga</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% no = 1 %>
+                <% for(let i=0; i<dataProduct.length; i++) { %>
+                    <tr>
+                        <td><%= no %></td>
+                        <td><%= dataProduct[i].Product.name %></td>
+                        <td><%= dataProduct[i].Minimarket.name %></td>
+                        <td><%= helper.rupiahFormat(dataProduct[i].price) %></td>
+                    </tr>
+                    <% no++ %>
+                <% } %>
+            </tbody>
+        </table>
+        
+    </div>
+</div>

@@ -1,4 +1,6 @@
 'use strict';
+const {Product} = require('../models/index')
+
 module.exports = (sequelize, DataTypes) => {
   var ProductMinimarket = sequelize.define('ProductMinimarket', {
     id: {
@@ -31,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     ProductMinimarket.belongsTo(models.Product)
     ProductMinimarket.belongsTo(models.Minimarket)
-  };
+  };  
+
   return ProductMinimarket;
 };
