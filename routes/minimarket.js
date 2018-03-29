@@ -1,13 +1,17 @@
 const router = require('express').Router();
-const {Minimarket} = require('../models/index');
+const {Minimarket, ProductMinimarket} = require('../models/index');
 
 router.get('/', function(req, res) {
     Minimarket.findAll()
     .then(dataMinimarket => { 
-        let obj = {
-            dataMinimarket : dataMinimarket
-        };
-        res.render('./minimarket/minimarket.ejs', obj)
+        ProductMinimarket.userLogin(req.session.username)
+        .then(dataLogin => {
+            let obj = {
+                login: dataLogin,
+                dataMinimarket : dataMinimarket
+            };
+            res.render('./minimarket/minimarket.ejs', obj)
+        })
     })
 })
 
