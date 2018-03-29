@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User} = require('../models')
+const {User, ProductMinimarket} = require('../models')
 const checkAdmin = require('../middleware/authAdmin')
 
 
@@ -8,7 +8,11 @@ router.get('/', (req, res) => {
         order: [['id','ASC']]
     })
     .then(dataUser => {
-        res.render('user/list-user', {users: dataUser})
+        ProductMinimarket.userLogin(req.session.username)
+        .then(dataLogin => {
+            res.render('user/list-user', {users: dataUser, login: dataLogin})
+        })
+        
     })
     .catch(err => {
         console.log(err)
